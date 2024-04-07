@@ -5,10 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Nav from './comp/Nav';
 import TVShows from './comp/TVShows';
 import Movies from './comp/Movies';
-import { Provider } from 'react-redux';
-import { store } from './comp/redux/store';
 import Details from './comp/Details';
-import { useSelector } from 'react-redux'
+
 
 //fee46b36579aeb7838aead2425507afe
 

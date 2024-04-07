@@ -3,16 +3,19 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import { settrending } from './redux/slice/trendingslice';
 import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import ReactSimplyCarousel from 'react-simply-carousel';
 
 
 const Trending = () => {
+
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const dispatch = useDispatch()
 
     const trendinglist = useSelector((state) => {
         return state.trendingmovie
     })
-
 
 
     const token = process.env.REACT_APP_TOKEN;
@@ -48,7 +51,7 @@ const Trending = () => {
 
     // console.log(trend);
     // console.log(time);
-   
+
     return (
         <>
             <div className='trending-movie flex gap-4 flex-col'>
@@ -67,25 +70,27 @@ const Trending = () => {
                 </div>
 
                 <div className='movie-list flex gap-6'>
+
                     {
                         trendinglist.map((e) => {
-                            
                             return (
                                 <>
-                                    <NavLink to= {`/details/${e.id}`}>
+                                    <NavLink to={`/details/${e.id}`}>
                                         <div key={e.id}>
-                                            <div className='h-80 w-60'>
-                                                <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}`} alt="" />
+                                            <div className='poster h-80 w-60'>
+                                                <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}` || <Skeleton />} alt="" />
                                             </div>
-                                            <h3>{e.title}</h3>
-                                            <h4>{e.release_date}</h4>
+                                            <h3>{e.title || <Skeleton />}</h3>
+                                            <h4>{e.release_date || <Skeleton />}</h4>
                                         </div>
                                     </NavLink>
                                 </>
                             )
                         })
                     }
+
                 </div>
+
             </div>
         </>
     )

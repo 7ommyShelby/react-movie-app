@@ -42,7 +42,7 @@ const Popular = () => {
     }
 
     // movie()
-    console.log(popularlist);
+
 
     useEffect(() => {
         movie()

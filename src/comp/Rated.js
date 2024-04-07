@@ -42,7 +42,7 @@ const Rated = () => {
         movie()
     }, [shows]);
 
-    console.log(topratedlist);
+
 
     return (
         <>
