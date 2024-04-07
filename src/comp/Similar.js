@@ -40,6 +40,9 @@ const Similar = () => {
     }
     useEffect(() => {
         similarvideos()
+        return(()=>{
+            setsimilar([])
+        })
     }, [id])
 
     console.log(similar);

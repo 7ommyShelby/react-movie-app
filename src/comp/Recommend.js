@@ -38,6 +38,9 @@ const Recommend = () => {
     }
     useEffect(() => {
         recommendedvideos()
+        return(()=>{
+            setrecommendations([])
+        })
     }, [id])
 
     console.log(recommendations);

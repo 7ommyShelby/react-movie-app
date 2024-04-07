@@ -66,6 +66,10 @@ const Details = () => {
 
     useEffect(() => {
         getinfo()
+        return(()=>{
+            dispatch(setinfo([]))
+            dispatch(setcredits({}))
+        })
     }, [id])
 
     console.log(movieinfo, credits);
@@ -79,7 +83,7 @@ const Details = () => {
                             <img src={`https://image.tmdb.org/t/p/original${movieinfo.poster_path}` || <Skeleton />} alt="" />
                         </div>
                         <div className="right">
-                            <h1 className='text-4xl'>{movieinfo.title || <Skeleton />}</h1>
+                            <h1 className='text-4xl'>{movieinfo.title || <Skeleton count={1} />}</h1>
                             <h3><i>{movieinfo.tagline || <Skeleton />}</i></h3>
                             <ul className='flex gap-4'>
                                 {movieinfo.genres.map((e) => {
