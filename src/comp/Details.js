@@ -15,6 +15,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const Details = () => {
 
     const { id } = useParams()
+    const {shows} = useParams()
+
     const token = process.env.REACT_APP_TOKEN;
     const dispatch = useDispatch()
     const movieinfo = useSelector((state) => (state.movieinfo))
@@ -23,9 +25,10 @@ const Details = () => {
 
 
     function getinfo() {
+
         const options1 = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/movie/${id}`,
+            url: `https://api.themoviedb.org/3/${shows}/${id}`,
             headers: {
                 accept: 'application/json',
                 Authorization: `Bearer ${token}`
@@ -45,7 +48,7 @@ const Details = () => {
 
         const options2 = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+            url: `https://api.themoviedb.org/3/${shows}/${id}/credits`,
             headers: {
                 accept: 'application/json',
                 Authorization: `Bearer ${token}`

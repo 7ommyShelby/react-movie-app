@@ -14,6 +14,8 @@ const Similar = () => {
     // https://api.themoviedb.org/3/movie/845783/recommendations
 
     const { id } = useParams()
+    const { shows } = useParams()
+
     const token = process.env.REACT_APP_TOKEN;
     const dispatch = useDispatch()
     const similar = useSelector((state) => (state.similar))
@@ -22,7 +24,7 @@ const Similar = () => {
     function similarvideos() {
         const options = {
             method: 'GET',
-            url: `https://api.themoviedb.org/3/movie/${id}/similar`,
+            url: `https://api.themoviedb.org/3/${shows}/${id}/similar`,
             headers: {
                 accept: 'application/json',
                 Authorization: `Bearer ${token}`
@@ -50,19 +52,19 @@ const Similar = () => {
     return (
         <>
             <div className='similar flex flex-col'>
-                <h1>Similar Movies</h1>
+                <h1>Similar {shows.toUpperCase()}</h1>
                 <div className='movie-list flex gap-8 '>
                     {
                         similar.map((e) => {
                             return (
                                 <>
-                                    <NavLink to={`/details/${e.id}`}>
+                                    <NavLink to={`/details/${shows}/${e.id}`}>
                                         <div key={e.id}>
                                             <div className='poster h-80 w-60'>
                                                 <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}`} alt="" />
                                             </div>
-                                            <h3>{e.title}</h3>
-                                            <h4>{e.release_date}</h4>
+                                            <h3>{e.title || e.name}</h3>
+                                            <h4>{e.release_date || e.first_air_date}</h4>
                                         </div>
                                     </NavLink>
                                 </>

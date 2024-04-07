@@ -17,6 +17,7 @@ const Trending = () => {
         return state.trendingmovie
     })
 
+    const shows = "movie"
 
     const token = process.env.REACT_APP_TOKEN;
 
@@ -75,7 +76,7 @@ const Trending = () => {
                         trendinglist.map((e) => {
                             return (
                                 <>
-                                    <NavLink to={`/details/${e.id}`}>
+                                    <NavLink to={`/details/${shows}/${e.id}`}>
                                         <div key={e.id}>
                                             <div className='poster h-80 w-60'>
                                                 <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}` || <Skeleton />} alt="" />

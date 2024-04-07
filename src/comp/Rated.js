@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import { settoprated } from './redux/slice/trendingslice';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -65,13 +66,17 @@ const Rated = () => {
                     {
                         topratedlist.map((e) => {
                             return (
-                                <div key={e.id}>
-                                    <div className='h-80 w-60'>
-                                        <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}`} alt="" />
-                                    </div>
-                                    <h3>{e?.title || e?.name}</h3>
-                                    <h4>{e?.release_date || e?.first_air_date}</h4>
-                                </div>
+                                <>
+                                    <NavLink to={`/details/${shows}/${e.id}`}>
+                                        <div key={e.id}>
+                                            <div className='h-80 w-60'>
+                                                <img className='w-full h-full' src={`https://image.tmdb.org/t/p/original${e.poster_path}`} alt="" />
+                                            </div>
+                                            <h3>{e?.title || e?.name}</h3>
+                                            <h4>{e?.release_date || e?.first_air_date}</h4>
+                                        </div>
+                                    </NavLink>
+                                </>
                             )
                         })
                     }
